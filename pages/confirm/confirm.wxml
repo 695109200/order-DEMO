@@ -1,0 +1,59 @@
+<view class="PayBox">
+  <view class="FoodList">
+    <view wx:for="{{PayList1}}" class="FoodBox" key='a'>
+      <image src="../statc/1.jpg" class="FoodImg"></image>
+      <view class="FoodName">{{item.name}}</view>
+      <view class="FoodLength">x{{item.Number}}</view>
+      <view class="FoodPay">
+        <text>¥</text> {{item.pay}}</view>
+    </view>
+    <view class="PayNumberBox">
+      <view class="PayNumberBox1">总价:</view>
+      <view class="PayNumberBox2">¥{{Total}}</view>
+    </view>
+  </view>
+  <view class="FormBox">
+    <form>
+      <view class="FormBox1">
+        <view style="float:left">外卖</view>
+        <view style="float:right">
+          <switch bindchange="SetWai" />
+        </view>
+      </view>
+      <view class=" section1">
+        <view style="float:left">楼层号:</view>
+        <picker mode="selector" range="{{array1}}" value="{{index1}}" bindchange="section1Change">
+          <view style="float:right">
+            {{array1[index1]}}
+            <text style="color:rgb(229, 224, 230)">></text>
+          </view>
+        </picker>
+      </view>
+      <view class=" section1">
+        <view style="float:left">座位号:</view>
+        <picker mode="selector" range="{{array2}}" value="{{index2}}" bindchange="section2Change">
+          <view style="float:right">
+            {{array2[index2]}}
+            <text style="color:rgb(229, 224, 230)">></text>
+          </view>
+        </picker>
+      </view>
+      <view class=" section1">
+        <view style="float:left">用餐人数:</view>
+        <picker mode="selector" range="{{array3}}" value="{{index3}}" bindchange="section3Change">
+          <view style="float:right">
+            {{array3[index3]}}
+            <text style="color:rgb(229, 224, 230)">></text>
+          </view>
+        </picker>
+      </view>
+      <view class="section1">
+        <view>备注:</view>
+        <textarea maxlength='20' adjust-position value="{{TipTxt}}" bindblur="SetValue" />
+      </view>
+      <view class="PayButton">
+        微信支付
+      </view>
+    </form>
+  </view>
+</view>

@@ -1,0 +1,71 @@
+  <view class="Head">
+    <view class="HeadImg"><image src="../statc/1.jpg" style="width:100%;height:100%"></image></view>
+    <text class="ShopName">bingo果汁冰</text>
+    <text class="ShopPay">配送费：¥0.00 餐盒费：¥0.00</text>
+    <text class="ShopAddr">地址：广州市从化区华夏学院</text>
+    <text class="ShopIntroduce">未填写商铺介绍</text>
+  </view>
+<view class="aa">
+  <view style="float:left">
+    <scroll-view scroll-y='true' class='scrollY' style='height:{{winHeight}}px'>
+      <view class='all clear'>
+        <block wx:key="lists" wx:for="{{lists}}">
+          <view bindtap='jumpIndex' data-id="a{{item.id}}" id='{{index}}' data-index="{{index}}">
+            <view class='text-style'>
+              <view class="{{curNav==index?'text-style1':'text-style'}}">{{item.name}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+  <view style="width:70%;float:right;" class="Box">
+    <scroll-view scroll-y='true' style='height:{{winHeight}}px;' scroll-into-view="{{scrollTopId}}" scroll-with-animation="true" bindscroll="onScroll">
+      <view wx:for="{{lists}}" wx:for-index="DadIndex" wx:key="key" class="Box1">
+        <view class="title" id="a{{DadIndex}}">{{item.name}}</view>
+        <view wx:for="{{item.Food}}" wx:for-item="ChilenIndex" data-food="{{food}}" wx:key="key1" class='under_line'>
+          <image src="../statc/1.jpg" class="FoodImg"></image>
+          <view>
+            <view class="FoodName">{{ChilenIndex.name}}</view>
+            <view class="FoodSold">已售{{ChilenIndex.Sold}}</view>
+            <view class="FoodPay">¥{{ChilenIndex.pay}}</view>
+          </view>
+          <view class="AddFood">
+            <view class="Rem" bindtap="RmTotal" id="{{ChilenIndex.pay}}" data-item-index="{{index}}" data-parentIndex="{{DadIndex}}" wx:if="{{ChilenIndex.Number>0}}">-</view>
+            <view class="Number" wx:if="{{ChilenIndex.Number>0}}">{{ChilenIndex.Number}}</view>
+            <view class="Add" bindtap="AddTotal" id="{{ChilenIndex.pay}}" data-item-index="{{index}}" data-parentIndex="{{DadIndex}}">+</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+<view class="CartBox" wx:if="{{cart}}">
+  <view class="close">
+    <text class="CloseTxt">已选餐品</text>
+    <view bindtap="clearPayList">
+      <image src="../statc/icon/清空.png" class="CloseImg"></image>
+      <text class="CloseTxt1">清空</text>
+    </view>
+  </view>
+  <scroll-view scroll-y='true' style='height:400rpx;'>
+    <view wx:for="{{PayList}}" class='under_line1' wx:key='' wx:if="{{item.Number>0}}">
+      <view class="FoodName1">{{item.name}}</view>
+      <view class="FoodPay1">¥{{item.pay}}</view>
+      <view class="AddFood">
+        <view class="Rem" bindtap="RmTotal" id="{{ChilenIndex.pay}}" data-item-index="{{item.index}}" data-parentIndex="{{item.parentIndex}}">-</view>
+        <view class="Number">{{item.Number}}</view>
+        <view class="Add" bindtap="AddTotal" id="{{ChilenIndex.pay}}" data-item-index="{{item.index}}" data-parentIndex="{{item.parentIndex}}">+</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+<view class="FoodBottom">
+  <view class="FoodLength" bindtap="PayList">
+    <image src="../statc/icon/购物车.png" class="FoodLengthImg"></image>
+    <view class="FoodLengthNumber">{{FoodLength}}</view>
+  </view>
+  <view class="FoodMoney">¥{{Total}}</view>
+</view>
+<view class="GoPay" bindtap="GoPay">去结算</view>
+<view class="Foodbg" wx:if="{{bg}}" bindtap="PayList"></view>

@@ -1,0 +1,8 @@
+{
+  "pages": [
+    "pages/Order/Order",
+    "pages/confirm/confirm"
+  ],
+
+  "sitemapLocation": "sitemap35.json"
+}
